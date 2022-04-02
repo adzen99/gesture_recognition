@@ -1,6 +1,7 @@
 import autopy
 import numpy
 import utils
+import pyautogui
 
 class Gesture:
     def __init__(self, landmarks):
@@ -21,25 +22,42 @@ class Gesture:
                 else:
                     fingertips.append(0)
 
-
-
         return fingertips == [1, 0, 0, 0]
 
     def move_mouse(self, current_x, current_y):
         if self.move_mouse_condition():
-            x_mouse, y_mouse = autopy.mouse.location()
+            # x_mouse, y_mouse = autopy.mouse.location()
             autopy.mouse.move(self.screen_width - current_x, current_y) 
     
-    def mouse_right_click(self):
+    def mouse_left_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[8][1:]
-        if(utils.distance(p, q) < 12):
-            autopy.mouse.click()  # Left click
+        if utils.distance(p, q) < 12 :
+            pyautogui.click(button='left')  # Left click
     
+    def mouse_middle_click(self):
+        p = self.landmarks[4][1:]
+        q = self.landmarks[16][1:]
+        if utils.distance(p, q) < 12 :
+            pyautogui.click(button='middle')  # Middle click
+
     def mouse_right_click(self):
         p = self.landmarks[4][1:]
-        q = self.landmarks[8][1:]
-        if(utils.distance(p, q) < 12):
-            autopy.mouse.click()  # Left click
+        q = self.landmarks[12][1:]
+        if utils.distance(p, q) < 12 :
+            pyautogui.click(button='right')  # Right click
+
+    def mouse_left_double_click(self):
+        p = self.landmarks[4][1:]
+        q = self.landmarks[7][1:]
+        if utils.distance(p, q) < 12:
+            pyautogui.click(button='left', clicks=2)  # Left double click
+
+    def mouse_left_double_click(self):
+        p = self.landmarks[4][1:]
+        q = self.landmarks[6][1:]
+        if utils.distance(p, q) < 12:
+            pyautogui.click(button='left', clicks=3)  # Left triple click
+
 
 
