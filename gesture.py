@@ -12,7 +12,7 @@ class Gesture:
     def get_poining_fingertip_coordinatees(self):
         return (self.landmarks[8][1], self.landmarks[8][2])
 
-    def move_mouse_condition(self):
+    def fingers_flags(self):
         tip_ids = [8, 12, 16, 20]  # Indexes for the tips of each finger
         fingertips = []  # To store 4 sets of 1s or 0s
 
@@ -22,10 +22,10 @@ class Gesture:
                 else:
                     fingertips.append(0)
 
-        return fingertips == [1, 0, 0, 0]
+        return fingertips
 
     def move_mouse(self, current_x, current_y):
-        if self.move_mouse_condition():
+        if self.fingers_flags() == [1, 0, 0, 0]:
             # x_mouse, y_mouse = autopy.mouse.location()
             autopy.mouse.move(self.screen_width - current_x, current_y) 
     
@@ -58,6 +58,11 @@ class Gesture:
         q = self.landmarks[6][1:]
         if utils.distance(p, q) < 12:
             pyautogui.click(button='left', clicks=3)  # Left triple click
+    
+    def mouse_scroll(self, current_x, current_y):
+        if self.fingers_flags() == [1, 1, 0, 0]:
+            pyautogui.vscroll(10)
+    
 
 
 

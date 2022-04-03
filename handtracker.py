@@ -46,12 +46,16 @@ class HandTracker:
                 current_y = previous_y + (y2 - previous_y) / 7
 
                 gesture.move_mouse(current_x, current_y)
+                gesture.mouse_scroll(current_x, current_y)
                 previous_x, previous_y = current_x, current_y
                 
                 gesture.mouse_left_click()
                 gesture.mouse_right_click()
                 gesture.mouse_middle_click()
                 gesture.mouse_left_double_click()
+
+
+
             cv2.imshow("Webcam", img)
             if cv2.waitKey(5) & 0xFF == 27:
                 break
