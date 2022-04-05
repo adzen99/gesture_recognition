@@ -29,14 +29,23 @@ class GUI:
         w2 = ttk.Scale(popup, from_=0, to=10, orient=HORIZONTAL)
         w2.set(1)
         w2.pack()
-        label_ = Label(popup, text= "Display hand landmarks")
-        label_.pack()
-        c = Checkbutton(popup, text = "Yes")
-        c.pack()
-        c = Checkbutton(popup, text = "Yes")
-        c.pack()
+        Label(popup, text= "Display hand landmarks").pack()
+        Radiobutton(popup, text = "Yes", value=1).pack()
+        Radiobutton(popup, text = "No", value=2).pack()
+        button = ttk.Button(
+            popup,
+            text = 'Save',
+            command = lambda : self.save_options(), 
+        )
+        button.pack(
+            ipadx=5,
+            ipady=5,
+            expand=True
+        )
         popup.mainloop()
 
+    def save_options(self):
+        pass
 
     def display_gui(self):
         self.create_button('Exit', self.root.quit)
