@@ -1,6 +1,6 @@
 import autopy
 import numpy
-import utils
+from utils import distance3d
 import pyautogui
 
 class Gesture:
@@ -32,31 +32,31 @@ class Gesture:
     def mouse_left_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[8][1:]
-        if utils.distance(p, q) < 12 :
+        if distance3d(p, q) < 12 :
             pyautogui.click(button='left')  # Left click
     
     def mouse_middle_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[16][1:]
-        if utils.distance(p, q) < 12 :
+        if distance3d(p, q) < 12 :
             pyautogui.click(button='middle')  # Middle click
 
     def mouse_right_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[12][1:]
-        if utils.distance(p, q) < 12 :
+        if distance3d(p, q) < 12 :
             pyautogui.click(button='right')  # Right click
 
     def mouse_left_double_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[7][1:]
-        if utils.distance(p, q) < 12:
+        if distance3d(p, q) < 12:
             pyautogui.click(button='left', clicks=2)  # Left double click
 
     def mouse_left_double_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[6][1:]
-        if utils.distance(p, q) < 12:
+        if distance3d(p, q) < 12:
             pyautogui.click(button='left', clicks=3)  # Left triple click
     
     def mouse_scroll(self, current_x, current_y):

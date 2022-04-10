@@ -25,7 +25,3 @@ class HandTracker:
                     center_x, center_y = int(landmark.x * w), int(landmark.y * h)  
                     landmark_list.append([index, center_x, center_y, landmark.z])
         return landmark_list
-        
-
-
-

@@ -12,7 +12,7 @@ class Key:
         # draw the box
 
         bg_rec = img[self.y : self.y + self.h, self.x : self.x + self.w]
-        white_rect = numpy.ones(bg_rec.shape, dytpe = numpy.uint8)
+        white_rect = numpy.ones(bg_rec.shape, dtype = numpy.uint8)
         white_rect[:] = bg_color
         res = cv2.addWeighted(bg_rec, alpha, white_rect, 1-alpha, 1.0)
 
@@ -24,7 +24,7 @@ class Key:
         text_pos = (int(self.x + self.w/2 - tetx_size[0][0]/2), int(self.y + self.h/2 + tetx_size[0][1]/2))
         cv2.putText(img, self.text,text_pos , font_face, font_scale,text_color, thickness)
 
-    def isOver(self,x,y):
+    def is_over(self,x,y):
         if (self.x + self.w > x > self.x) and (self.y + self.h> y >self.y):
             return True
         return False
