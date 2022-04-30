@@ -1,0 +1,47 @@
+import autopy
+import numpy
+from utils import distance3d
+import pyautogui
+
+
+class CalculatorGesture:
+    def __init__(self, landmarks):
+        self.landmarks = landmarks
+        self.screen_width, self.screen_height = autopy.screen.size()
+        self.mouse_sensitivity = 50
+
+    def fingers_flags(self):
+        tip_ids = [8, 12, 16, 20]  # Indexes for the tips of each finger
+
+        fingersUp = 0
+
+        for index in range(4):
+            
+            if self.landmarks[tip_ids[index]][2] < self.landmarks[tip_ids[index] - 3][2]:  # Checks to see if the tip of the finger is higher than the joint
+                fingersUp += 1
+            try:
+                if self.landmarks[tip_ids[index]+21][2] < self.landmarks[tip_ids[index]+21 - 3][2]:  # Checks to see if the tip of the finger is higher than the joint
+                    fingersUp += 1
+            except IndexError:
+                continue
+                
+        return fingersUp
+    
+    def operation(self):
+        if len(self.landmarks) != 42:
+            return ''
+        if distance3d(self.landmarks[8][1:], self.landmarks[0+21][1:]) < 20 or distance3d(self.landmarks[0][1:], self.landmarks[8+21][1:]) < 20:
+            return '+'
+        elif distance3d(self.landmarks[12][1:], self.landmarks[0+21][1:]) < 20 or distance3d(self.landmarks[0][1:], self.landmarks[12+21][1:]) < 20:
+            return '-'
+        elif distance3d(self.landmarks[16][1:], self.landmarks[0+21][1:]) < 20 or distance3d(self.landmarks[0][1:], self.landmarks[16+21][1:]) < 20:
+            return '*'
+        elif distance3d(self.landmarks[20][1:], self.landmarks[0+21][1:]) < 20 or distance3d(self.landmarks[0][1:], self.landmarks[20+21][1:]) < 20:
+            return '/'
+        else:
+            return ''
+        
+            
+
+
+
