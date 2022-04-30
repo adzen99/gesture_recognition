@@ -53,7 +53,7 @@ class Gesture:
         if distance3d(p, q) < 12:
             pyautogui.click(button='left', clicks=2)  # Left double click
 
-    def mouse_left_double_click(self):
+    def mouse_left_triple_click(self):
         p = self.landmarks[4][1:]
         q = self.landmarks[6][1:]
         if distance3d(p, q) < 12:

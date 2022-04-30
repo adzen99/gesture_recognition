@@ -12,13 +12,6 @@ from calculator_controller import CalculatorController
 
 def main():
 
-    # dotenv.load_dotenv()
-    
-    # dotenv.set_key(dotenv.find_dotenv(), "A_B", "ABC12343")
-    # dotenv.set_key(dotenv.find_dotenv(), "A_B_C", "134")
-
-    # print(os.environ['A_B_C'])
-
     gui = GUI(width=800, height=600, title='Gesture hand commands')
     mouse_controller = MouseController()
     keyboard_controller = KeyboardController()

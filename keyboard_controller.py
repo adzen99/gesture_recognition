@@ -18,7 +18,7 @@ class KeyboardController:
 
     def create_keyboard(self):
         w, h = 80, 60
-        start_x, start_y = 40, 200
+        start_x, start_y = 40, 150
         keys = []
         letters = list("QWERTYUIOPASDFGHJKLZXCVBNM")
         for i, l in enumerate(letters):
