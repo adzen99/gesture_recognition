@@ -23,15 +23,30 @@ class CalculatorController:
 
             if(landmarks):
                 calculator_gesture = CalculatorGesture(landmarks)
-                if count % 30 == 0:
+                if count and count % 10 == 0:
                     operation = calculator_gesture.operation()
+                    floating_point = calculator_gesture.floating_point()
+                    del_character = calculator_gesture.del_character()
                     if operation:
-                        text_box.text += operation;
+                        if operation == '=':
+                            text_box.text = str(eval(text_box.text))
+                        else:
+                            text_box.text += operation;
+                            count = 0
+                    elif floating_point:
+                        text_box.text += floating_point;
+                        count = 0
+                    elif del_character:
+                        text_box.text = text_box.text[:-1]
+                        count = 0
                     else:
                         text_box.text += str(calculator_gesture.fingers_flags())
-
+                        count = 0
+                count += 0.5
+            else:
+                count = 0
             cv2.imshow("Webcam", img)
             if cv2.waitKey(5) & 0xFF == 27:
                 break
-            count += 1
+            
             
