@@ -11,7 +11,7 @@ class CalculatorController:
 
     def display(self):
         handtracker = HandTracker()
-        text_box = Key(50, 400, 500, 100,'')
+        text_box = Key(50, 400, 550, 100, '')
 
         cap = cv2.VideoCapture(0)
         count = 0
