@@ -28,9 +28,9 @@ class KeyboardController:
                 keys.append(Key(start_x + (i-10)*w + i*5, start_y + h + 5, w, h, l))
             else:
                 keys.append(Key(start_x + (i-19)*w + i*5, start_y + 2*h + 10, w, h, l))
-        keys.append(Key(start_x+25, start_y+3*h+15, 5*w, h, "Space"))
-        keys.append(Key(start_x+8*w + 50, start_y+2*h+10, w, h, "clr"))
-        keys.append(Key(start_x+5*w+30, start_y+3*h+15, 5*w, h, "<--"))
+        keys.append(Key(start_x+25, start_y+3*h+15, 5*w, h, "space"))
+        keys.append(Key(start_x+8*w + 50, start_y+2*h+10, w, h, "clear"))
+        keys.append(Key(start_x+5*w+30, start_y+3*h+15, 5*w, h, "delete"))
 
         show_key = Key(300,5,80,50, 'Show')
         exit_key = Key(300,65,80,50, 'Exit')
@@ -83,9 +83,9 @@ class KeyboardController:
                     cv2.circle(frame, (center_x, center_y), 5, (0,255,0), cv2.FILLED)
 
             ctime = time.time()
-            fps = int(1/(ctime-ptime))
+            # fps = int(1/(ctime-ptime))
 
-            cv2.putText(frame,str(fps) + " FPS", (10,20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,0),2)
+            # cv2.putText(frame,str(fps) + " FPS", (10,20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,0),2)
             # show_key.draw_key(frame,(255,255,255), (0,0,0),0.1, font_scale=0.5)
             # exit_key.draw_key(frame,(255,255,255), (0,0,0),0.1, font_scale=0.5)
             cv2.setMouseCallback('video', self.get_mouse_pos)
@@ -108,12 +108,12 @@ class KeyboardController:
                     alpha = 0.1
                     # writing using mouse right click
                     if k.is_over(self.clicked_x, self.clicked_y):                              
-                        if k.text == '<--':
+                        if k.text == 'delete':
                             text_box.text = text_box.text[:-1]
-                        elif k.text == 'clr':
+                        elif k.text == 'clear':
                             text_box.text = ''
                         elif len(text_box.text) < 30:
-                            if k.text == 'Space':
+                            if k.text == 'space':
                                 text_box.text += " "
                             else:
                                 text_box.text += k.text
@@ -122,12 +122,12 @@ class KeyboardController:
                     if (k.is_over(sign_tip2_x, sign_tip2_y)):
                         click_time = time.time()
                         if click_time - previous_click > 0.4:                               
-                            if k.text == '<--':
+                            if k.text == 'delete':
                                 text_box.text = text_box.text[:-1]
-                            elif k.text == 'clr':
+                            elif k.text == 'clear':
                                 text_box.text = ''
                             elif len(text_box.text) < 30:
-                                if k.text == 'Space':
+                                if k.text == 'space':
                                     text_box.text += " "
                                 else:
                                     text_box.text += k.text
