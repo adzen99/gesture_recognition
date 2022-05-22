@@ -1,6 +1,6 @@
 
 
-from gui import GUI
+from controller.gui import GUI
 
 def main():
 
