@@ -1,8 +1,8 @@
 import numpy
 import cv2
 import autopy
-from gesture import Gesture
-from handtracker import HandTracker
+from model.gesture import Gesture
+from model.handtracker import HandTracker
 import dotenv
 import os
 

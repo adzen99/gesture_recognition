@@ -1,8 +1,8 @@
 import cv2
 import numpy
-from handtracker import HandTracker
-from calculator_gesture import CalculatorGesture
-from key import Key
+from model.handtracker import HandTracker
+from model.calculator_gesture import CalculatorGesture
+from model.key import Key
 import time
 
 class CalculatorController:

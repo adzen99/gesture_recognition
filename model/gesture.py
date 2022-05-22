@@ -1,6 +1,6 @@
 import autopy
 import numpy
-from utils import distance3d
+from utils.utils import distance3d
 import pyautogui
 
 class Gesture:

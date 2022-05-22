@@ -1,9 +1,9 @@
 import cv2
-from key import Key
-from handtracker import HandTracker
+from model.key import Key
+from model.handtracker import HandTracker
 from pynput.keyboard import Controller
 import time
-from utils import distance2d
+from utils.utils import distance2d
 
 class KeyboardController:
     def __init__(self):
