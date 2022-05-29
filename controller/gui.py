@@ -4,9 +4,9 @@ from tkinter.ttk import Label, Style
 import dotenv
 import os
 
-from keyboard_controller import KeyboardController
-from mouse_controller import MouseController
-from calculator_controller import CalculatorController
+from controller.keyboard_controller import KeyboardController
+from controller.mouse_controller import MouseController
+from controller.calculator_controller import CalculatorController
 
 class GUI:
     def __init__(self, width=0, height=0, title=''):
@@ -18,10 +18,11 @@ class GUI:
         self.sensitivity = None
         self.var = None
     
-    def create_button(self, text, cmd, frame):
+    def create_button(self, text, cmd, image, frame):
         button = ttk.Button(
             frame,
             text = text,
+            image = image,
             command = lambda: cmd(), 
         )
         return button
@@ -71,9 +72,12 @@ class GUI:
         keyboard_controller = KeyboardController()
         calculator_controller = CalculatorController()
 
-        self.create_button('Mouse controller', mouse_controller.actions, frame).grid(row=6, column=0, pady=10)
-        self.create_button('Keyboard controller', keyboard_controller.create_keyboard, frame).grid(row=7, column=0, pady=10)
-        self.create_button('Calculator controller', calculator_controller.display, frame).grid(row=8, column=0, pady=10)
-
-        self.create_button('Exit', self.root.quit, frame).grid(row=9, column=0, pady=10)
+        mouse_photo = PhotoImage(file=r"./photos/mouse.png");
+        self.create_button('Mouse controller', mouse_controller.actions, mouse_photo, frame).grid(row=6, column=0, pady=10)
+        keyboard_photo = PhotoImage(file=r"./photos/keyboard.png");
+        self.create_button('Keyboard controller', keyboard_controller.create_keyboard, keyboard_photo, frame).grid(row=7, column=0, pady=10)
+        calculator_photo = PhotoImage(file=r"./photos/calculator.png");
+        self.create_button('Calculator controller', calculator_controller.display, calculator_photo, frame).grid(row=8, column=0, pady=10)
+        exit_photo = PhotoImage(file=r"./photos/exit.png");
+        self.create_button('Exit', self.root.quit, exit_photo, frame).grid(row=9, column=0, pady=10)
         self.root.mainloop()

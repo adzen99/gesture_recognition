@@ -10,7 +10,7 @@ class KeyboardController:
         self.mouse_x, self.mouse_y = 0, 0
         self.clicked_x, self.clicked_y = 0, 0
 
-    def get_mouse_pos(self, event , x, y, flags, param):
+    def get_mouse_pos(self, event , x, y):
         if event == cv2.EVENT_LBUTTONUP:
             self.clicked_x, self.clicked_y = x, y
         if event == cv2.EVENT_MOUSEMOVE:

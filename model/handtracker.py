@@ -1,11 +1,7 @@
 import cv2
 import mediapipe
-import numpy
-import autopy
 import dotenv
 import os
-
-from gesture import Gesture
 
 class HandTracker:
     def __init__(self):

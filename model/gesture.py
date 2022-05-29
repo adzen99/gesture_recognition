@@ -1,5 +1,4 @@
 import autopy
-import numpy
 from utils.utils import distance3d
 import pyautogui
 

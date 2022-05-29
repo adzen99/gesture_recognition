@@ -7,8 +7,6 @@ import pyautogui
 class CalculatorGesture:
     def __init__(self, landmarks):
         self.landmarks = landmarks
-        self.screen_width, self.screen_height = autopy.screen.size()
-        self.mouse_sensitivity = 50
 
     def fingers_flags(self):
         tip_ids = [8, 12, 16, 20]  # Indexes for the tips of each finger

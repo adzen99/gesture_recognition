@@ -6,8 +6,6 @@ from model.key import Key
 import time
 
 class CalculatorController:
-    def __init__(self):
-        pass
 
     def display(self):
         handtracker = HandTracker()
