@@ -16,12 +16,6 @@ class CalculatorGesture:
         if self.landmarks[4][1] > self.landmarks[3][1]:
             fingersUp += 1
 
-        # try:
-        #     if self.landmarks[25][1] > self.landmarks[24][1]:
-        #         fingersUp += 1
-        # except IndexError:
-        #     pass
-
         for index in range(4):
             
             if self.landmarks[tip_ids[index]][2] < self.landmarks[tip_ids[index] - 3][2]:  # Checks to see if the tip of the finger is higher than the joint

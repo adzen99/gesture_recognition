@@ -16,7 +16,7 @@ class Key:
         white_rect[:] = bg_color
         res = cv2.addWeighted(bg_rec, alpha, white_rect, 1-alpha, 1.0)
 
-        # putting the image back to its position
+        # put the image back to its position
         img[self.y : self.y + self.h, self.x : self.x + self.w] = res
 
         #put the letter

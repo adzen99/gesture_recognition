@@ -23,7 +23,7 @@ class MouseController:
             landmarks = handtracker.hand_landmarks(img, img_rgb)
             if(landmarks):
                 gesture = Gesture(landmarks)
-                
+    
                 x, y = landmarks[8][1:3]
 
                 x2 = numpy.interp(x, (75, 640 - 75), (0, screen_width)) 

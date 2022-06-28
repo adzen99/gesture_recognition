@@ -37,17 +37,12 @@ class KeyboardController:
         text_box = Key(start_x, start_y-h-5, 10*w+9*5, h,'')
 
         cap = cv2.VideoCapture(0)
-        ptime = 0
 
         # initiating the hand tracker
         handtracker = HandTracker()
 
-        # getting frame's height and width
         frame_height, frame_width, _ = cap.read()[1].shape
-        # show_key.x = int(frame_height*1.5) - 85
-        # exit_key.x = int(frame_height*1.5) - 85
 
-        # show = False
         cv2.namedWindow('video')
         counter = 0
         previous_click = 0
@@ -69,7 +64,6 @@ class KeyboardController:
             if not ret:
                 break
             frame = cv2.resize(frame,(int(frame_width*1.5), int(frame_height*1.5)))
-            # frame = cv2.flip(frame, 1)
             #find hands
             img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
             landmarks = handtracker.hand_landmarks(frame, img_rgb)
@@ -83,25 +77,10 @@ class KeyboardController:
                     cv2.circle(frame, (center_x, center_y), 5, (0,255,0), cv2.FILLED)
 
             ctime = time.time()
-            # fps = int(1/(ctime-ptime))
-
-            # cv2.putText(frame,str(fps) + " FPS", (10,20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,0),2)
-            # show_key.draw_key(frame,(255,255,255), (0,0,0),0.1, font_scale=0.5)
-            # exit_key.draw_key(frame,(255,255,255), (0,0,0),0.1, font_scale=0.5)
             cv2.setMouseCallback('video', self.get_mouse_pos)
-
-            # if show_key.is_over(self.clicked_x, self.clicked_x):
-            #     show = not show
-            #     show_key.text = "Hide" if show else "Show"
-            #     self.clicked_x, self.clicked_y = 0, 0
-
-            # if exit_key.is_over(self.clicked_x, self.clicked_y):
-            #     #break
-            #     exit()
 
             #checking if sign finger is over a key and if click happens
             alpha = 0.5
-            # if show:
             text_box.draw_key(frame, (255,255,255), (0,0,0), 0.3)
             for k in keys:
                 if k.is_over(self.mouse_x, self.mouse_y) or k.is_over(sign_tip1_x, sign_tip1_y):
@@ -131,7 +110,6 @@ class KeyboardController:
                                     text_box.text += " "
                                 else:
                                     text_box.text += k.text
-                                    #simulating the press of actuall keyboard
                                     keyboard.press(k.text)
                             previous_click = click_time
                 k.draw_key(frame,(255,255,255), (0,0,0), alpha=alpha)
@@ -140,7 +118,7 @@ class KeyboardController:
             ptime = ctime
             cv2.imshow('video', frame)
 
-            ## stop the video when 'q' is pressed
+            # stop the video when 'q' is pressed
             pressed_key = cv2.waitKey(1)
             if pressed_key == ord('q'):
                 break
