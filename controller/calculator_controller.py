@@ -21,11 +21,15 @@ class CalculatorController:
 
             if(landmarks):
                 calculator_gesture = CalculatorGesture(landmarks)
-                if count and count % 10 == 0:
+                if count and count % 12 == 0:
+                    fingers = calculator_gesture.fingers_flags()
                     operation = calculator_gesture.operation()
                     floating_point = calculator_gesture.floating_point()
                     del_character = calculator_gesture.del_character()
-                    if operation:
+                    if fingers == 0:
+                        text_box.text += str(0)
+                        count = 0
+                    elif operation:
                         if operation == '=':
                             text_box.text = str(eval(text_box.text))
                         else:
@@ -38,7 +42,7 @@ class CalculatorController:
                         text_box.text = text_box.text[:-1]
                         count = 0
                     else:
-                        text_box.text += str(calculator_gesture.fingers_flags())
+                        text_box.text += str(fingers)
                         count = 0
                 count += 0.5
             else:
